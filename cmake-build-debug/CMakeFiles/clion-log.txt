@@ -1,0 +1,16 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree -B /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug
+CMake Deprecation Warning at /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DConfig.cmake:18 (cmake_policy):
+  The OLD behavior for policy CMP0072 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+Call Stack (most recent call first):
+  CMakeLists.txt:10 (find_package)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug

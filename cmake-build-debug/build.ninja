@@ -1,0 +1,166 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: CppOctree
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug/
+# =============================================================================
+# Object build statements for EXECUTABLE target CppOctree
+
+
+#############################################
+# Order-only phony target for CppOctree
+
+build cmake_object_order_depends_target_CppOctree: phony || CMakeFiles/CppOctree.dir
+
+build CMakeFiles/CppOctree.dir/main.cpp.o: CXX_COMPILER__CppOctree_Debug /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/main.cpp || cmake_object_order_depends_target_CppOctree
+  DEFINES = -DFMT_HEADER_ONLY=0 -DFMT_STRING_ALIAS=1 -DFMT_USE_WINDOWS_H=0 -D_GLIBCXX_USE_CXX11_ABI=0
+  DEP_FILE = CMakeFiles/CppOctree.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Xclang -fopenmp -std=gnu++20
+  INCLUDES = -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include/open3d/3rdparty -isystem /usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/CppOctree.dir
+  OBJECT_FILE_DIR = CMakeFiles/CppOctree.dir
+
+build CMakeFiles/CppOctree.dir/Octree.cpp.o: CXX_COMPILER__CppOctree_Debug /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/Octree.cpp || cmake_object_order_depends_target_CppOctree
+  DEFINES = -DFMT_HEADER_ONLY=0 -DFMT_STRING_ALIAS=1 -DFMT_USE_WINDOWS_H=0 -D_GLIBCXX_USE_CXX11_ABI=0
+  DEP_FILE = CMakeFiles/CppOctree.dir/Octree.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Xclang -fopenmp -std=gnu++20
+  INCLUDES = -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include/open3d/3rdparty -isystem /usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/CppOctree.dir
+  OBJECT_FILE_DIR = CMakeFiles/CppOctree.dir
+
+build CMakeFiles/CppOctree.dir/OctreeNode.cpp.o: CXX_COMPILER__CppOctree_Debug /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/OctreeNode.cpp || cmake_object_order_depends_target_CppOctree
+  DEFINES = -DFMT_HEADER_ONLY=0 -DFMT_STRING_ALIAS=1 -DFMT_USE_WINDOWS_H=0 -D_GLIBCXX_USE_CXX11_ABI=0
+  DEP_FILE = CMakeFiles/CppOctree.dir/OctreeNode.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Xclang -fopenmp -std=gnu++20
+  INCLUDES = -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include/open3d/3rdparty -isystem /usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/CppOctree.dir
+  OBJECT_FILE_DIR = CMakeFiles/CppOctree.dir
+
+build CMakeFiles/CppOctree.dir/OctreeVisualizer.cpp.o: CXX_COMPILER__CppOctree_Debug /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/OctreeVisualizer.cpp || cmake_object_order_depends_target_CppOctree
+  DEFINES = -DFMT_HEADER_ONLY=0 -DFMT_STRING_ALIAS=1 -DFMT_USE_WINDOWS_H=0 -D_GLIBCXX_USE_CXX11_ABI=0
+  DEP_FILE = CMakeFiles/CppOctree.dir/OctreeVisualizer.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -Xclang -fopenmp -std=gnu++20
+  INCLUDES = -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include -isystem /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/include/open3d/3rdparty -isystem /usr/local/opt/libomp/include
+  OBJECT_DIR = CMakeFiles/CppOctree.dir
+  OBJECT_FILE_DIR = CMakeFiles/CppOctree.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target CppOctree
+
+
+#############################################
+# Link the executable CppOctree
+
+build CppOctree: CXX_EXECUTABLE_LINKER__CppOctree_Debug CMakeFiles/CppOctree.dir/main.cpp.o CMakeFiles/CppOctree.dir/Octree.cpp.o CMakeFiles/CppOctree.dir/OctreeNode.cpp.o CMakeFiles/CppOctree.dir/OctreeVisualizer.cpp.o | /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/libOpen3D.0.19.0.dylib /usr/local/opt/libomp/lib/libomp.dylib
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk
+  LINK_LIBRARIES = -Wl,-rpath,/Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib  /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/libOpen3D.0.19.0.dylib  /usr/local/opt/libomp/lib/libomp.dylib
+  OBJECT_DIR = CMakeFiles/CppOctree.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = CppOctree
+  TARGET_PDB = CppOctree.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree -B/Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/joseguerrero/proyectoAED/aed_evil_brenner/CppOctree/cmake-build-debug
+
+build all: phony CppOctree
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DConfig.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DConfigVersion.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DTargets-release.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DTargets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindOpenMP.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DConfig.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DConfigVersion.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DTargets-release.cmake /Users/joseguerrero/Downloads/open3d-devel-darwin-x86_64-0.19.0/lib/cmake/Open3D/Open3DTargets.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all
