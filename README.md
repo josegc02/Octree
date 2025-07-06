@@ -49,6 +49,31 @@ cmake --build build --config Release
 - 4) Ejecutar
 .\build\Release\octree.exe
 
+## Estructura de implementación
+Creamos 3 clases: OctreeNode, Octree y Point3D.
+
+## Octree
+
+
+## Documentación
+La clase OctreeNode es el que contiene la funcionalidad de la estructura. La clase Octree se podría entender como un wrapper, pues sus métodos solo llaman a los metodos del root. Por lo tanto, la documentación es sobre los métodos de OctreeNode.
+
+### Contains
+- Recibe un objeto de la clase Point3D. Le preguntará al nodo. 
+### Subdivide
+
+### CollectAllPoints
+
+### Merge
+
+### Insert
+
+### Remove
+
+### GetNearby
+
+
+
 
 
 
