@@ -37,3 +37,20 @@ std::vector<Point3D> Octree::getNearby(const Point3D& position, double maxDistan
 void Octree::print() const {
     root->print();
 }
+
+const OctreeNode * Octree::getRoot() const {
+    return root;
+
+}
+
+
+
+
+
+bool Octree::searchPoint(const Point3D& p) const {
+    return root ? root->searchPoint(p) : false;
+}
+
+bool Octree::updatePoint(const Point3D& oldPos, const Point3D& newPos) {
+    return root ? root->updatePoint(oldPos, newPos) : false;
+}

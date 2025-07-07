@@ -27,8 +27,11 @@ public:
 
     // Opcional: imprimir estructura para debug
     void print() const;
+    const OctreeNode* getRoot() const ;
 
-    const OctreeNode* getRoot() const { return root; }
+    bool searchPoint(const Point3D& p) const;
+
+    bool updatePoint(const Point3D& oldPos, const Point3D& newPos);
 };
 
 #endif // OCTREE_H
