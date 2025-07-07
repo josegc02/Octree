@@ -49,22 +49,17 @@ cmake --build build --config Release
 - 4) Ejecutar
 .\build\Release\octree.exe
 
-## Octree
+## Implementación
 
 <p align="center">
   <img src="img/octree.png" alt="Octree Image" width="250"/>
 </p>
 
-### Documentación
-
-### Estructura de implementación
 Creamos 3 clases: OctreeNode, Octree y Point3D.
 
 La clase OctreeNode es el que contiene la funcionalidad de la estructura. La clase Octree se podría entender como un wrapper, pues sus métodos solo llaman a los metodos del root. Por lo tanto, la documentación es sobre el Point3D y los métodos de OctreeNode.
 
-### Clases
-
-#### Point3D
+## Point3D
 
 **Propósito:** Representa un punto en el espacio tridimensional.
 
@@ -75,7 +70,7 @@ La clase OctreeNode es el que contiene la funcionalidad de la estructura. La cla
 - Construcción por defecto y parametrizado.
 - Sobrecarga del operador "==" para comparar 2 puntos.
 
-#### OctreeNode
+## OctreeNode
 
 **Propósito:** Representa un nodo del octree que puede almacenar puntos o subdividirse en 8 subnodos (octante).
 
@@ -88,7 +83,7 @@ La clase OctreeNode es el que contiene la funcionalidad de la estructura. La cla
 
 **Métodos:**
 
-##### Contains
+### Contains
 
 **Propósito:**
 Determina si un punto __p__ se encuentra dentro del cubo representado por el nodo actual.
@@ -99,22 +94,7 @@ El nodo es un cubo centrado en __center__ con longitud __sideLength__. Se calcul
 **Importancia:**
 Solo los puntos que están __dentro del cubo del nodo__ pueden ser insertados o eliminados. Es una verificación espacial fundamental.
 
-##### Subdivide
-
-**Propósito:**
-Divide el nodo actual en 8 subnodos (octantes) y distribuye sus puntos entre ellos.
-
-**Cómo funciona:**
-1. Calcula los nuevos centros de los 8 subcubes (sumando/subtrayendo __quarter__ en x, y, z).
-
-2. Crea un nuevo nodo __OctreeNode__ para cada subcubículo y lo almacena en __children[]__.
-
-3. Mueve los puntos existentes a los hijos si es posible. Si algún punto no puede insertarse, lo guarda de nuevo en el nodo actual como "fallback".
-
-**Importancia:**
-Permite que el árbol crezca en profundidad y __mantenga pocos puntos por nodo__, asegurando eficiencia en búsquedas e inserciones.
-
-##### CollectAllPoints
+### CollectAllPoints
 
 **Propósito:**
 Recoge todos los puntos contenidos en este nodo y en todos sus descendientes.
@@ -126,20 +106,33 @@ Recoge todos los puntos contenidos en este nodo y en todos sus descendientes.
 **Importancia:**
 Útil para __recolectar información completa__ del árbol, por ejemplo, durante una fusión (merge) o para exportar el contenido.
 
-##### Merge
+### Search
 
 **Propósito:**
-Elimina los subnodos y traslada todos sus puntos al nodo actual.
+Determina si un punto específico __p__ está contenido dentro del octree, comenzando desde el nodo actual.
 
-**Como funciona:**:
-1. Recolecta los puntos de todos los hijos usando __collectAllPoints__.
-2. Libera la memoria de los hijos (__delete__).
-3. Inserta los puntos en el vector __points__ local.
+**Como funciona:**
+1. Verificación de contención espacial (contains)
+  - Se verifica si el punto está dentro del volumen espacial (AABB) del nodo actual.
+  - Si no está dentro, se retorna __false__ de inmediato (evita búsquedas innecesarias).
+2. Búsqueda local en el nodo actual
+  - Se recorren los puntos almacenados directamente en el nodo.
+  - Si el punto coincide con alguno de ellos (__q == p__), se retorna __true__.
+3. Descenso al hijo adecuado
+  - Si el nodo tiene hijos (__children[0]__ no es __nullptr__), se calcula en qué hijo debería estar el punto.
+  - Para ello, se utiliza una codificación binaria:
+    - __x > center.x__ → bit 2
+    - __y > center.y__ → bit 1
+    - __z > center.z__ → bit 0
+  (Esto da un índice entre 0 y 7 (porque 2^3 = 8) que selecciona el hijo correcto).
+  - Se invoca recursivamente __searchPoint(p)__ en ese hijo.
+4. Retorno final
+  - Si no se encontró el punto ni localmente ni en los hijos, se retorna false.
 
 **Importancia:**
-Permite __reducir la complejidad del árbol__ cuando la cantidad de datos ha disminuido, manteniendo un árbol compacto y eficiente.
+Si no se encontró el punto ni localmente ni en los hijos, se retorna __false__.
 
-##### Insert
+### Insert
 
 **Propósito:**
 Inserta un punto en el árbol comenzando desde este nodo.
@@ -155,7 +148,22 @@ Inserta un punto en el árbol comenzando desde este nodo.
 **Importancia:**
 Controla la __distribución espacial de los datos__ y mantiene la eficiencia del octree mediante subdivisiones progresivas.
 
-##### Remove
+###  Subdivide
+
+**Propósito:**
+Divide el nodo actual en 8 subnodos (octantes) y distribuye sus puntos entre ellos.
+
+**Cómo funciona:**
+1. Calcula los nuevos centros de los 8 subcubes (sumando/subtrayendo __quarter__ en x, y, z).
+
+2. Crea un nuevo nodo __OctreeNode__ para cada subcubículo y lo almacena en __children[]__.
+
+3. Mueve los puntos existentes a los hijos si es posible. Si algún punto no puede insertarse, lo guarda de nuevo en el nodo actual como "fallback".
+
+**Importancia:**
+Permite que el árbol crezca en profundidad y __mantenga pocos puntos por nodo__, asegurando eficiencia en búsquedas e inserciones.
+
+### Remove
 
 **Propósito:**
 Elimina un punto del nodo o de alguno de sus hijos.
@@ -170,7 +178,39 @@ Elimina un punto del nodo o de alguno de sus hijos.
 **Importancia:**
 Permite mantener el árbol limpio, y además garantiza que no queden subdivisiones innecesarias si el número de puntos baja.
 
-##### GetNearby
+### Merge
+
+**Propósito:**
+Elimina los subnodos y traslada todos sus puntos al nodo actual.
+
+**Como funciona:**:
+1. Recolecta los puntos de todos los hijos usando __collectAllPoints__.
+2. Libera la memoria de los hijos (__delete__).
+3. Inserta los puntos en el vector __points__ local.
+
+**Importancia:**
+Permite __reducir la complejidad del árbol__ cuando la cantidad de datos ha disminuido, manteniendo un árbol compacto y eficiente.
+
+### Update
+
+**Propósito:**
+Actualiza un punto existente (__from__) con una nueva ubicación (__destiny__), simulando un "movimiento" del punto.
+
+**Como funciona:**
+
+1. Eliminar el punto original:
+Se intenta eliminar el punto __from__ del árbol. Si falla (no existe o fuera del nodo), retorna __false__.
+
+2. Insertar el nuevo punto:
+Se intenta insertar el punto __destiny__. Si falla (por ejemplo, fuera del dominio del octree), se revierte la operación insertando de nuevo el punto __from__.
+
+3. Retorno final:
+Si la inserción fue exitosa, retorna __true__; si se tuvo que revertir, retorna __false__.
+
+**Importancia:**
+Proporciona una forma segura de "mover" un punto dentro del octree. Su implementación protege contra pérdida de datos en caso de fallo en la nueva inserción, actuando como una transacción atómica (todo o nada).
+
+### GetNearby
 
 **Propósito:**
 Recoge todos los puntos en el árbol que están dentro de una cierta distancia euclidiana desde una posición dada.
